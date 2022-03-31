@@ -1,7 +1,7 @@
 <template>
-    <form>
-        <input type="text" v-model="username">
-        <input type="button" v-on:click="setUsername">
+    <form @submit.prevent="onSubmit">
+        <input type="text" id="usernameInput" v-model="username" @keypress.enter="setUsername">
+        <input type="button" value="Join chat!"  @click="setUsername">
     </form>
 </template>
 

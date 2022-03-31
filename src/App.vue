@@ -1,26 +1,22 @@
 <template>
     <h1>ChatBox</h1>
-    <LoginForm />
+    <ChatBox v-if="this.$store.state.username" />
+    <LoginForm v-else />
 </template>
 
 <script>
-import LoginForm from "./components/LoginForm.vue"
+import LoginForm from "./components/LoginForm.vue";
+import ChatBox from "./components/ChatBox.vue";
 
 export default {
     name: 'App',
     components: {
-        LoginForm
+        LoginForm,
+        ChatBox
     }
 }
 </script>
 
 <style>
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-}
+
 </style>

@@ -1,8 +1,6 @@
 <template>
-    <form @submit.prevent="onSubmit">
-        <input type="text" id="usernameInput" v-model="username" @keypress.enter="setUsername">
-        <input type="button" value="Join chat!"  @click="setUsername">
-    </form>
+    <input type="text" id="usernameInput" v-model="username" @keypress.enter="setUsername">
+    <input type="button" value="Join chat!"  @click="setUsername">
 </template>
 
 <script>
@@ -15,7 +13,6 @@ export default {
     methods: {
         setUsername() {
             this.$store.commit("setUsername", this.username);
-            console.log(this.$store.state.username);
         }
     }
 }

@@ -1,5 +1,9 @@
 <template>
-    <div id="chat-box"></div>
+    <div id="chat-box">
+        <div v-for="m in messages" :key="m.id_">
+            {{ m.message }}
+        </div>
+    </div>
     <h2>{{ this.$store.state.username }}</h2>
     <input type="text" v-model="message" @keydown.enter="sendMessage">
     <input type="button" value="Send" @click="sendMessage">
@@ -14,13 +18,28 @@ export default {
             message: "",
         }
     },
+    computed: {
+        messages: {
+            get() {
+                return this.$store.state.messages;
+            },
+            set(data) {
+                this.$store.commit("setMessages", data);
+            }
+        }
+    },
     methods: {
         sendMessage() {
             apiSendMessage(this.$store.state.username, this.message);
+        },
+        async getMessages() {
+            const newMessages = await apiGetMessages();
+            this.messages = newMessages.data;
+            console.log(this.messages);
         }
     },
     created() {
-        setInterval(apiGetMessages, 1000);
+        setInterval(this.getMessages, 1000);
     }
 }
 </script>

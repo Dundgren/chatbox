@@ -5,6 +5,7 @@ export const store = createStore({
         return {
             username: "",
             message: "",
+            messages: [],
         }
     },
     mutations: {
@@ -13,6 +14,9 @@ export const store = createStore({
         },
         setMessage(state, message) {
             state.message = message;
+        },
+        setMessages(state, messages) {
+            state.messages = messages;
         }
     }
 });

@@ -9,3 +9,8 @@ export function apiSendMessage(username, message) {
     axios.post("http://localhost:8000/api/v1/message", data);
 }
 
+export async function apiGetMessages() {
+    const result = await axios.get("http://localhost:8000/api/v1/message");
+
+    console.log(result);
+}

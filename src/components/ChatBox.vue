@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import { apiSendMessage } from "../helpers/message";
+import { apiSendMessage, apiGetMessages } from "../helpers/message";
 
 export default {
-    data () {
+    data() {
         return {
             message: "",
         }
@@ -18,6 +18,9 @@ export default {
         sendMessage() {
             apiSendMessage(this.$store.state.username, this.message);
         }
+    },
+    created() {
+        setInterval(apiGetMessages, 1000);
     }
 }
 </script>

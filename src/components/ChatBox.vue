@@ -1,12 +1,24 @@
 <template>
+    <div id="id-card">
+        <p>
+            <b>{{ this.$store.state.username }}</b> <br>
+            Age:<br>
+            Sex:<br>
+            Location:<br>
+        </p>
+    </div>
     <div id="chat-box">
         <div v-for="m in messages" :key="m.id_">
-            {{ m.message }}
+            <div id="message-box">
+                <h2>{{ m.username }} <span id="date-string">{{ m.timestamp }}</span> </h2>
+                <p>{{ m.message }}</p>
+            </div>
         </div>
     </div>
-    <h2>{{ this.$store.state.username }}</h2>
-    <input type="text" v-model="message" @keydown.enter="sendMessage">
-    <input type="button" value="Send" @click="sendMessage">
+    <!-- <h2 id="username">{{ this.$store.state.username }}</h2> -->
+    <textarea v-model="message" @keydown.enter="sendMessage" id="message-input">
+    </textarea>
+    <input type="button" value="Send" @click="sendMessage" id="send-message-button">
 </template>
 
 <script>
@@ -33,9 +45,14 @@ export default {
             apiSendMessage(this.$store.state.username, this.message);
         },
         async getMessages() {
-            const newMessages = await apiGetMessages();
+            let newMessages = await apiGetMessages();
+
+            newMessages.data.forEach(m => {
+                const d = new Date(m.timestamp);
+
+                m.timestamp = d.toLocaleString("sv-SE");
+            });
             this.messages = newMessages.data;
-            console.log(this.messages);
         }
     },
     created() {
@@ -45,10 +62,54 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    #id-card {
+        box-sizing: border-box;
+        background-color: #631b93;
+        border-bottom: 1em solid #4c1074;
+        border-top: 1em solid #4c1074;
+        padding: 0.5em;
+        grid-column: 18 / 24;
+        grid-row: 1 / 5;
+        width: 100%;
+    }
+
     #chat-box {
-        border: 1px solid black;
-        height: 80vh;
-        width: 80vw;
-        overflow: scroll;
+        overflow-y: scroll;
+        grid-column: 2 / 24;
+        grid-row: 5 / 22;
+        width: 100%;
+        background-color: #eee;
+        background-color: #631b93;
+    }
+
+    #message-box {
+        padding: 0 1em 1em 1em;
+        width: 100%;
+        word-wrap: break-word;
+        box-sizing: border-box;
+    }
+
+    #date-string {
+        font-size: 0.6em;
+    }
+
+    #message-input {
+        grid-column: 2 / 22;
+        grid-row: 22 / 24;
+        box-sizing: border-box;
+        width: 100%;
+        border: none;
+        padding: 1em;
+        background-color: #74389d;
+        resize: none;
+    }
+
+    #send-message-button {
+        grid-column: 22 / 24;
+        grid-row: 22 / 24;
+        width: 100%;
+        background-color: #8f5ab3;
+        border: none;
+        color: #eee;
     }
 </style>

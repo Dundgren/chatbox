@@ -6,7 +6,7 @@
     #title {
         justify-self: center;
         align-self: center;
-        grid-column: 10 / 15;
+        grid-column: 10 / 16;
         grid-row: 1 / 5;
     }
 </style>

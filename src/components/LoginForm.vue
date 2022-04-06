@@ -22,7 +22,8 @@ export default {
 
 <style lang="scss" scoped>
     #login-form {
-        grid-column: 10 / 15;
+        grid-column: 10 / 16;
+        grid-row: 5 / 7;
         width: 100%;
         background-color: #631b93;
         display: grid;

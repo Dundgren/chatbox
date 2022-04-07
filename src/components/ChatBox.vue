@@ -2,12 +2,12 @@
     <div id="id-card">
         <p>
             <b>{{ this.$store.state.username }}</b> <br>
-            Age:<br>
-            Sex:<br>
-            Location:<br>
+            Age: TBA<br>
+            Sex: TBA<br>
+            Location: TBA<br>
         </p>
     </div>
-    <div id="chat-box">
+    <div id="chat-box" ref="chatBoxDiv" @scroll="stopScrollToBottom">
         <div v-for="m in messages" :key="m.id_">
             <div id="message-box">
                 <h2>{{ m.username }} <span id="date-string">{{ m.timestamp }}</span> </h2>
@@ -27,6 +27,7 @@ export default {
     data() {
         return {
             message: "",
+            shouldScrollToBottom: true,
         }
     },
     computed: {
@@ -40,10 +41,6 @@ export default {
         }
     },
     methods: {
-        sendMessage() {
-            apiSendMessage(this.$store.state.username, this.message);
-            this.message = "";
-        },
         async getMessages() {
             let newMessages = await apiGetMessages();
 
@@ -54,10 +51,29 @@ export default {
             });
 
             this.messages = newMessages.data;
+        },
+        sendMessage() {
+            apiSendMessage(this.$store.state.username, this.message);
+            this.message = "";
+        },
+        scrollToBottom() {
+            if (this.$refs.chatBoxDiv.scrollHeight - this.$refs.chatBoxDiv.scrollTop == this.$refs.chatBoxDiv.clientHeight) {
+                this.shouldScrollToBottom = true;
+            }
+            if (this.shouldScrollToBottom) {
+                this.$refs.chatBoxDiv.scrollTop = this.$refs.chatBoxDiv.scrollHeight;
+            }
+        },
+        stopScrollToBottom() {
+            this.shouldScrollToBottom = false;
         }
+
     },
     created() {
         setInterval(this.getMessages, 1000);
+    },
+    mounted() {
+        setInterval(this.scrollToBottom, 500);
     }
 }
 </script>
@@ -89,6 +105,14 @@ export default {
         word-wrap: break-word;
         box-sizing: border-box;
         white-space: pre;
+
+        h2 {
+            margin-top: 0;
+        }
+
+        p {
+            margin: 0;
+        }
     }
 
     #date-string {
@@ -104,6 +128,11 @@ export default {
         padding: 1em;
         background-color: #74389d;
         resize: none;
+        color: #eee;
+
+        &:focus {
+            outline: none;
+        }
     }
 
     #send-message-button {

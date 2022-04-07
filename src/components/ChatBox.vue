@@ -1,8 +1,8 @@
 <template>
     <div id="chat-box" ref="chatBoxDiv" @scroll="stopScrollToBottom">
         <div v-for="m in messages" :key="m.id_">
-            <div id="message-box">
-                <h2>{{ m.username }} <span id="date-string">{{ m.timestamp }}</span> </h2>
+            <div class="message-box">
+                <h2>{{ m.username }} <span class="date-string">{{ m.timestamp }}</span> </h2>
                 <p>{{ m.message }}</p>
             </div>
         </div>
@@ -72,12 +72,12 @@ export default {
         background-color: #631b93;
     }
 
-    #message-box {
+    .message-box {
         padding: 0 1em 1em 1em;
         width: 100%;
         word-wrap: break-word;
         box-sizing: border-box;
-        white-space: pre;
+        white-space: pre-line;
 
         h2 {
             margin-top: 0;
@@ -88,7 +88,7 @@ export default {
         }
     }
 
-    #date-string {
+    .date-string {
         font-size: 0.6em;
     }
 </style>

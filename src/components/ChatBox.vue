@@ -1,5 +1,5 @@
 <template>
-    <div id="chat-box" ref="chatBoxDiv" @scroll="stopScrollToBottom">
+    <div id="chat-box" ref="chatBoxDiv" @scroll="this.shouldScrollToBottom = false">
         <div v-for="m in messages" :key="m.id_">
             <div class="message-box">
                 <h2>{{ m.username }} <span class="date-string">{{ m.timestamp }}</span> </h2>
@@ -48,9 +48,6 @@ export default {
                 this.$refs.chatBoxDiv.scrollTop = this.$refs.chatBoxDiv.scrollHeight;
             }
         },
-        stopScrollToBottom() {
-            this.shouldScrollToBottom = false;
-        }
 
     },
     created() {
@@ -70,6 +67,7 @@ export default {
         width: 100%;
         background-color: #eee;
         background-color: #631b93;
+        padding-top: 1em;
     }
 
     .message-box {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://serene-reef-48878.herokuapp.com/";
+const baseUrl = "https://serene-reef-48878.herokuapp.com";
 
 export function apiSendMessage(username, message) {
     const data = {

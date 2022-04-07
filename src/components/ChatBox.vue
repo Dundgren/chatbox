@@ -15,8 +15,7 @@
             </div>
         </div>
     </div>
-    <!-- <h2 id="username">{{ this.$store.state.username }}</h2> -->
-    <textarea v-model="message" @keydown.enter="sendMessage" id="message-input">
+    <textarea v-model="message" @keydown.enter.exact.prevent="sendMessage" id="message-input">
     </textarea>
     <input type="button" value="Send" @click="sendMessage" id="send-message-button">
 </template>
@@ -43,6 +42,7 @@ export default {
     methods: {
         sendMessage() {
             apiSendMessage(this.$store.state.username, this.message);
+            this.message = "";
         },
         async getMessages() {
             let newMessages = await apiGetMessages();
@@ -52,6 +52,7 @@ export default {
 
                 m.timestamp = d.toLocaleString("sv-SE");
             });
+
             this.messages = newMessages.data;
         }
     },
@@ -87,6 +88,7 @@ export default {
         width: 100%;
         word-wrap: break-word;
         box-sizing: border-box;
+        white-space: pre;
     }
 
     #date-string {

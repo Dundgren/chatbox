@@ -1,7 +1,11 @@
 <template>
     <div id="main">
         <HeaderTitle />
-        <ChatBox v-if="this.$store.state.username" />
+        <template v-if="this.$store.state.username">
+            <IdCard />
+            <ChatBox  />
+            <MessageInput />
+        </template>
         <LoginForm v-else />
     </div>
 </template>
@@ -10,13 +14,17 @@
 import LoginForm from "./components/LoginForm.vue";
 import ChatBox from "./components/ChatBox.vue";
 import HeaderTitle from "./components/HeaderTitle.vue";
+import IdCard from "./components/IdCard.vue";
+import MessageInput from "./components/MessageInput.vue";
 
 export default {
     name: 'App',
     components: {
         LoginForm,
         ChatBox,
-        HeaderTitle
+        HeaderTitle,
+        IdCard,
+        MessageInput
     }
 }
 </script>

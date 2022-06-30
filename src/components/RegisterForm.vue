@@ -1,17 +1,15 @@
 <template>
-    <div id="login-form">
-        <h2>Login</h2>
-        <label for="login-username-input">Username</label>
-        <input type="text" id="login-username-input" v-model="username" @keypress.enter="setUsername">
+    <div id="register-form">
+        <h2>Register</h2>
+        <label for="register-username-input">Username</label>
+        <input type="text" id="register-username-input" v-model="username" @keypress.enter="setUsername">
+        <label for="register-password-input">Password</label>
+        <input type="text" id="register-password-input" v-model="password" @keypress.enter="setUsername">
         <br>
-        <input type="button" value="Join chat!"  @click="setUsername">
+        <input type="button" value="Register!"  @click="setUsername">
     </div>
-    <RegisterForm />
 </template>
-
 <script>
-import RegisterForm from "./RegisterForm.vue";
-
 export default {
     data() {
         return {
@@ -22,17 +20,14 @@ export default {
         setUsername() {
             this.$store.commit("setUsername", this.username);
         }
-    },
-    components: {
-        RegisterForm
     }
 }
 </script>
 
 <style lang="scss" scoped>
-    #login-form {
+    #register-form {
         grid-column: 10 / 16;
-        grid-row: 5 / 10;
+        grid-row: 11 / 16;
         width: 100%;
         background-color: #631b93;
         display: grid;

@@ -15,7 +15,7 @@ export default {
     },
     methods: {
         sendMessage() {
-            apiSendMessage(this.$store.state.username, this.message);
+            apiSendMessage(this.$store.state.userId, this.message);
             this.message = "";
         },
     }

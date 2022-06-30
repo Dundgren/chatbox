@@ -3,13 +3,13 @@ import axios from "axios";
 // const baseUrl = "https://serene-reef-48878.herokuapp.com";
 const baseUrl = "http://localhost:5000";
 
-export function apiSendMessage(username, message) {
+export async function apiSendMessage(userId, message) {
     const data = {
-        username: username,
+        user: userId,
         message: message
     };
 
-    const result = axios.post(`${baseUrl}/api/v1/messages`, data);
+    const result = await axios.post(`${baseUrl}/api/v1/messages`, data);
 
     console.log(result);
 }

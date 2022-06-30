@@ -13,3 +13,5 @@ Move current users messages to right side
 Add "jump to bottom" button
 Limit message max length
 Stop empty messages
+Check active users
+Logout

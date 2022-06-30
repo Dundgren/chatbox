@@ -4,7 +4,7 @@
         <label for="register-username-input">Username</label>
         <input type="text" id="register-username-input" v-model="username" @keypress.enter="register">
         <label for="register-password-input">Password</label>
-        <input type="text" id="register-password-input" v-model="password" @keypress.enter="register">
+        <input type="password" id="register-password-input" v-model="password" @keypress.enter="register">
         <br>
         <input type="button" value="Register!"  @click="register">
     </div>

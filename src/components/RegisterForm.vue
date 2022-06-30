@@ -22,6 +22,8 @@ export default {
     methods: {
         register() {
             apiRegister(this.username, this.password);
+            this.username = "",
+            this.password = ""
         }
     }
 }
@@ -37,7 +39,7 @@ export default {
         justify-items: center;
         padding: 1em;
 
-        input[type="text"] {
+        input[type="text"], input[type="password"]{
             background-color: #74389d;
             color: #eee;
             border: none;

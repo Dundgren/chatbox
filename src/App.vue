@@ -1,7 +1,7 @@
 <template>
     <div id="main">
         <HeaderTitle />
-        <template v-if="this.$store.state.username">
+        <template v-if="this.$store.state.userId">
             <IdCard />
             <ChatBox  />
             <MessageInput />

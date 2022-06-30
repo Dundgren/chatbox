@@ -9,7 +9,9 @@ export function apiSendMessage(username, message) {
         message: message
     };
 
-    axios.post(`${baseUrl}/api/v1/messages`, data);
+    const result = axios.post(`${baseUrl}/api/v1/messages`, data);
+
+    console.log(result);
 }
 
 export async function apiGetMessages() {

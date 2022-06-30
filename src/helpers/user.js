@@ -3,17 +3,22 @@ import axios from "axios";
 // const baseUrl = "https://serene-reef-48878.herokuapp.com";
 const baseUrl = "http://localhost:5000";
 
-export function apiSendMessage(username, message) {
+export async function apiRegister(username, password) {
     const data = {
         username: username,
-        message: message
+        password: password,
+        age: "",
+        sex: "",
+        location: ""
     };
 
-    axios.post(`${baseUrl}/api/v1/messages`, data);
+    const result = await axios.post(`${baseUrl}/api/v1/users`, data);
+
+    console.log(result);
 }
 
-export async function apiGetMessages() {
-    const result = await axios.get(`${baseUrl}/api/v1/messages`);
+export async function apiGetUser(username) {
+    const result = await axios.get(`${baseUrl}/api/v1/users/${username}`);
 
-    return result;
+    return result.data[0];
 }

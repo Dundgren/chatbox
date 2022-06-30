@@ -2,15 +2,16 @@
     <div id="login-form">
         <h2>Login</h2>
         <label for="login-username-input">Username</label>
-        <input type="text" id="login-username-input" v-model="username" @keypress.enter="setUsername">
+        <input type="text" id="login-username-input" v-model="username" @keypress.enter="login">
         <br>
-        <input type="button" value="Join chat!"  @click="setUsername">
+        <input type="button" value="Join chat!"  @click="login">
     </div>
     <RegisterForm />
 </template>
 
 <script>
 import RegisterForm from "./RegisterForm.vue";
+import { apiGetUser } from "../helpers/user";
 
 export default {
     data() {
@@ -19,8 +20,11 @@ export default {
         }
     },
     methods: {
-        setUsername() {
-            this.$store.commit("setUsername", this.username);
+        async login() {
+            const user = await apiGetUser(this.username);
+
+            this.$store.commit("setUsername", user.username);
+            this.$store.commit("setUserId", user.id);
         }
     },
     components: {

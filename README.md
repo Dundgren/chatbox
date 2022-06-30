@@ -6,7 +6,7 @@ Deployed build found at: https://chatbox-eight.vercel.app/
 
 Current version: 2.0.0
 
-Todo:
+Todo:__
 Write tests
 Implement proper login
 Move current users messages to right side

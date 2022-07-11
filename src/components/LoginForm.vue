@@ -1,8 +1,11 @@
 <template>
+    <p id="message">{{ message }}</p>
     <div id="login-form">
         <h2>Login</h2>
         <label for="login-username-input">Username</label>
         <input type="text" id="login-username-input" v-model="username" @keypress.enter="login">
+        <label for="login-password-input">Password</label>
+        <input type="password" id="login-password-input" v-model="password" @keypress.enter="login">
         <br>
         <input type="button" value="Join chat!"  @click="login">
     </div>
@@ -11,20 +14,30 @@
 
 <script>
 import RegisterForm from "./RegisterForm.vue";
-import { apiGetUser } from "../helpers/user";
+import { apiLogin } from "../helpers/user";
 
 export default {
     data() {
         return {
             username: "",
+            password: "",
+            message: ""
         }
     },
     methods: {
         async login() {
-            const user = await apiGetUser(this.username);
+            if (this.username && this.password) {
+                try {
+                    const user = await apiLogin(this.username, this.password);
 
-            this.$store.commit("setUsername", user.username);
-            this.$store.commit("setUserId", user.id);
+                    this.$store.commit("setUsername", user.username);
+                    this.$store.commit("setUserId", user.id);
+                } catch {
+                    this.message = "Login failed!";
+                }
+            } else {
+                this.message = "Both username and password are required!"
+            }
         }
     },
     components: {
@@ -43,7 +56,7 @@ export default {
         justify-items: center;
         padding: 1em;
 
-        input[type="text"] {
+        input[type="text"], input[type="password"] {
             background-color: #74389d;
             color: #eee;
             border: none;
@@ -62,5 +75,10 @@ export default {
         h2 {
             margin: 0;
         }
+    }
+
+    #message {
+        grid-column: 10 / 16;
+        grid-row: 4 / 5;
     }
 </style>

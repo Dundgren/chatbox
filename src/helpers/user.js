@@ -16,8 +16,13 @@ export async function apiRegister(username, password) {
     console.log(result);
 }
 
-export async function apiGetUser(username) {
-    const result = await axios.get(`${baseUrl}/api/v1/users/${username}`);
+export async function apiLogin(username, password) {
+    const data = {
+        username: username,
+        password: password
+    };
 
-    return result.data[0];
+    const result = await axios.post(`${baseUrl}/api/v1/users/login`, data);
+
+    return result.data;
 }

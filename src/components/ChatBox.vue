@@ -1,12 +1,11 @@
 <template>
     <div id="chat-box" ref="chatBoxDiv" @scroll="this.shouldScrollToBottom = false">
-        <div v-for="m in messages" :key="m.id_">
-            <div :class="this.$store.state.username == m.username ? 'message-box message-right' : 'message-box'">
+            <div v-for="m in messages" :key="m.id_" :class="this.$store.state.username == m.username ? 'message-box message-right' : 'message-box'">
                 <h2>{{ m.username }} <span class="date-string">{{ m.timestamp }}</span> </h2>
                 <p>{{ m.message }}</p>
             </div>
-        </div>
     </div>
+    <!-- <p v-if="!this.shouldScrollToBottom" id="jump-button"><span>You're viewing old messages. Click here to jump to bottom.</span></p> -->
 </template>
 
 <script>
@@ -54,7 +53,7 @@ export default {
         setInterval(this.getMessages, 1000);
     },
     mounted() {
-        setInterval(this.scrollToBottom, 500);
+        setInterval(this.scrollToBottom, 200);
     }
 }
 </script>
@@ -70,6 +69,22 @@ export default {
         padding-top: 1em;
     }
 
+    // #jump-button {
+    //     text-align: center;
+    //     grid-column: 9 / 17;
+    //     grid-row: 21 / 22;
+
+    //     span {
+    //         background-color: #8f5ab3;
+    //         padding: 0.5em;
+    //         border-radius: 1em;
+
+    //         &:hover {
+    //             background-color: black;
+    //         }
+    //     }
+    // }
+
     .message-right {
         text-align: right;
     }
@@ -80,7 +95,6 @@ export default {
         word-wrap: break-word;
         box-sizing: border-box;
         white-space: pre-line;
-        float: right;
 
         h2 {
             margin-top: 0;

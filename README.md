@@ -14,3 +14,4 @@ Limit message max length
 Check active users
 Logout
 Add ability to delete own messages
+Add warning about a username already existing

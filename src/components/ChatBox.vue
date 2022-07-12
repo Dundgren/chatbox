@@ -1,7 +1,7 @@
 <template>
     <div id="chat-box" ref="chatBoxDiv" @scroll="this.shouldScrollToBottom = false">
         <div v-for="m in messages" :key="m.id_">
-            <div class="message-box">
+            <div :class="this.$store.state.username == m.username ? 'message-box message-right' : 'message-box'">
                 <h2>{{ m.username }} <span class="date-string">{{ m.timestamp }}</span> </h2>
                 <p>{{ m.message }}</p>
             </div>
@@ -70,12 +70,17 @@ export default {
         padding-top: 1em;
     }
 
+    .message-right {
+        text-align: right;
+    }
+
     .message-box {
         padding: 0 1em 1em 1em;
         width: 100%;
         word-wrap: break-word;
         box-sizing: border-box;
         white-space: pre-line;
+        float: right;
 
         h2 {
             margin-top: 0;

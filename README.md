@@ -8,10 +8,9 @@ Current version: 2.0.0
 
 Todo:
 Write tests
-Implement proper login
-Move current users messages to right side
+Implement proper login (Missing jwt)
 Add "jump to bottom" button
 Limit message max length
-Stop empty messages
 Check active users
 Logout
+Add ability to delete own messages

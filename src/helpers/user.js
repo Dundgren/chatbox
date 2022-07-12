@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://serene-reef-48878.herokuapp.com";
+const baseUrl = process.env.VUE_APP_API_BASE_URL;
 
 export async function apiRegister(username, password) {
     const data = {

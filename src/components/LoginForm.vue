@@ -1,5 +1,5 @@
 <template>
-    <p id="message">{{ message }}</p>
+    <p id="error-message">{{ errorMessage }}</p>
     <div id="login-form">
         <h2>Login</h2>
         <label for="login-username-input">Username</label>
@@ -21,7 +21,7 @@ export default {
         return {
             username: "",
             password: "",
-            message: ""
+            errorMessage: ""
         }
     },
     methods: {
@@ -33,10 +33,10 @@ export default {
                     this.$store.commit("setUsername", user.username);
                     this.$store.commit("setUserId", user.id);
                 } catch {
-                    this.message = "Login failed!";
+                    this.errorMessage = "Login failed!";
                 }
             } else {
-                this.message = "Both username and password are required!"
+                this.errorMessage = "Both username and password are required!"
             }
         }
     },
@@ -77,7 +77,7 @@ export default {
         }
     }
 
-    #message {
+    #error-message {
         grid-column: 10 / 16;
         grid-row: 4 / 5;
     }

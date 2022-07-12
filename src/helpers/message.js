@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://serene-reef-48878.herokuapp.com";
+const baseUrl = process.env.VUE_APP_API_BASE_URL;
 
 export async function apiSendMessage(userId, message) {
     const data = {
@@ -8,9 +8,7 @@ export async function apiSendMessage(userId, message) {
         message: message
     };
 
-    const result = await axios.post(`${baseUrl}/api/v1/messages`, data);
-
-    console.log(result);
+    await axios.post(`${baseUrl}/api/v1/messages`, data);
 }
 
 export async function apiGetMessages() {

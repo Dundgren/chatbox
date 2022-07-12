@@ -15,8 +15,10 @@ export default {
     },
     methods: {
         sendMessage() {
-            apiSendMessage(this.$store.state.userId, this.message);
-            this.message = "";
+            if (this.message.trim().length > 0) { // Check so message isn't empty or only whitespaces
+                apiSendMessage(this.$store.state.userId, this.message);
+                this.message = "";
+            }
         },
     }
 }

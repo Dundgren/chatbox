@@ -4,7 +4,7 @@ This is a very simple chat. Register and "login" to join the one and only chatro
 
 Deployed build found at: https://chatbox-eight.vercel.app/
 
-Current version: 2.0.0
+Current version: 2.5.0
 
 Todo:
 Write tests

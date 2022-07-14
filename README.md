@@ -6,7 +6,7 @@ Deployed build found at: https://chatbox-eight.vercel.app/
 
 Current version: 2.5.0
 
-Todo:
+Todo:  
 Write tests  
 Implement proper login (Missing jwt)  
 Add "jump to bottom" button  
